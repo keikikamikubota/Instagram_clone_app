@@ -1,8 +1,11 @@
 Rails.application.routes.draw do
-  get 'pictures/new'
-  get 'pictures/index'
-  get 'pictures/edit'
-  get 'pictures/show'
-  get 'pictures/confirm'
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+  root 'pictures#index'
+  resources :sessions, only: [:new, :create, :destroy]
+  resources :users, only: [:new, :create, :show]
+  resources :pictures
+  resources :pictures do
+    collection do
+      post :confirm
+    end
+  end
 end

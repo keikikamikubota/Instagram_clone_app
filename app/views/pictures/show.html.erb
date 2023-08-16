@@ -1,2 +1,17 @@
-<h1>Pictures#show</h1>
-<p>Find me in app/views/pictures/show.html.erb</p>
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @picture.user.name %>
+</p>
+<p>
+  <strong>Text:</strong>
+  <%= @picture.text %>
+</p>
+<p>
+  <strong>Photo:</strong>
+  <%= image_tag @picture.image.url %>
+</p>
+
+<%= link_to 'Edit', edit_picture_path(@picture) %> |
+<%= link_to 'Back', pictures_path %>
