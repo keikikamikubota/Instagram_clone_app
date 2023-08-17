@@ -16,7 +16,7 @@ class PicturesController < ApplicationController
   end
 
   def confirm
-    @picture = current_user.pictures.build(picture_params)
+    @picture = Picture.new(picture_params)
     render :new if @picture.invalid?
   end
 
@@ -25,7 +25,7 @@ class PicturesController < ApplicationController
   end
 
   def create
-    @picture = current_user.pictures.build(picture_params)
+    @picture = Picture.new(picture_params)
     if params[:back]
       render :new
     else
@@ -55,6 +55,6 @@ class PicturesController < ApplicationController
   private
 
   def picture_params
-      params.require(:picture).permit(:user_id, :image, :content, :image_cache)
+      params.require(:picture).permit(:image, :content, :image_cache)
   end
 end
