@@ -19,8 +19,10 @@ class UsersController < ApplicationController
   end
 
   def edit
-    
     @user = User.find(params[:id])
+    if @user.id != current_user.id
+      redirect_to pictures_path, notice: "本人以外はユーザー編集ができません"
+    end
   end
 
   def update
