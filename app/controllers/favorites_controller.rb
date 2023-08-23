@@ -13,4 +13,8 @@ class FavoritesController < ApplicationController
     @user = User.find(params[:id])
     @favorites = @user.favorites
   end
+
+  def index
+    @favorites = Favorite.all
+  end
 end
