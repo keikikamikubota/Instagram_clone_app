@@ -6,6 +6,7 @@ class PicturesController < ApplicationController
   end
 
   def show
+    @user = User.find(params[:id])
     @picture = Picture.find(params[:id])
     @favorite = current_user.favorites.find_by(picture_id: @picture.id)
   end
@@ -24,7 +25,12 @@ class PicturesController < ApplicationController
   end
 
   def edit
-    @picture = Picture.find(params[:id])
+    @user = User.find(params[:id])
+    if @user.id != current_user.id
+      redirect_to pictures_path, notice: "本人以外は編集ができません"
+    else
+      @picture = Picture.find(params[:id])
+    end
   end
 
   def create
