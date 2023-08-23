@@ -1,13 +1,15 @@
 <p><% notice %></p>
 
+<h2>Insta_cloneにようこそ！</h2>
+
 <h1>index</h1>
 
 <table>
   <thead>
     <tr>
-      <th>画像</th>
-      <th>文章</th>
-      <th>投稿者</th>
+      <th>Photo</th>
+      <th>Text</th>
+      <th>投稿者(いいね一覧)</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -19,11 +21,10 @@
         <td><%= picture.content %></td>
         <td><%= link_to picture.user.name, favorite_path(picture.user) %></td>
         <% unless picture.user_id == current_user.id %>
-
-          <% if  (@favorites.pluck(:id) & (picture.favorites.pluck(:id))).any? %>
-            <td><%= link_to 'お気に入り解除する', favorite_path(id: picture.favorite_users.pluck(:id)), method: :delete, class: "btn btn-danger" %></td>
+          <% if Favorite.find_by(picture_id: picture.id, user_id: current_user.id) %>
+            <td><%= link_to 'いいね済', favorite_path(Favorite.find_by(picture_id: picture.id, user_id: current_user.id)), method: :delete, class: "btn btn-danger" %></td>
           <% else %>
-            <td><%= link_to 'お気に入りする', favorites_path(picture_id: picture.id), method: :post, class: "btn btn-outline-danger" %></td>
+            <td><%= link_to 'いいね', favorites_path(picture_id: picture.id), method: :post, class: "btn btn-outline-danger" %></td>
           <% end %>
         <% end %>
         <td><%= link_to '詳細', picture, class: "btn btn-outline-primary" %></td>
