@@ -1,6 +1,5 @@
 <h1>ユーザー編集画面</h1>
 <br>
-
 <% if @user.errors.any? %>
   <div id="error_explanation">
     <h2><%= @user.errors.count %>件のエラーがあります。</h2>
@@ -21,18 +20,13 @@
     <%= f.label :email %>
     <%= f.text_field :email %>
   </div>
-
   <div class="field">
     <%= f.label :新パスワード %>
     <%= f.password_field :password %>
   </div>
-
   <div class="field">
     <%= f.label :新パスワード確認 %>
     <%= f.password_field :password_confirmation %>
   </div>
-
-  <div class="actions btn btn-primary" >
-    <%= f.submit "編集" %>
-  </div>
+  <%= f.submit "編集" %>
 <% end %>

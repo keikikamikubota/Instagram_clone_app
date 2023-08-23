@@ -1,6 +1,4 @@
 <p id="notice"><%= notice %></p>
-
-
 <p>
   <strong>Text:</strong>
   <%= @picture.content %>
@@ -10,7 +8,6 @@
   <%= image_tag @picture.image.url, class:'icon-midium' %>
 </p>
 <% unless @picture.user_id == current_user.id %>
-
   <% if @favorite.present? %>
     <%= link_to 'いいね解除', favorite_path(id: @favorite.id), method: :delete, class: 'btn btn-danger' %>
   <% else %>
