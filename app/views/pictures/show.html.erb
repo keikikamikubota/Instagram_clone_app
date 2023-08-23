@@ -15,5 +15,7 @@
   <% end %>
 <% end %>
 
-<%= link_to '編集', edit_picture_path(@picture), class: "btn btn-outline-success" %>
+<% if @user.id == current_user.id %>
+  <%= link_to '編集', edit_picture_path(@picture), class: "btn btn-outline-success" %>
+<% end %>
 <%= link_to 'Index', pictures_path, class: "btn btn-outline-primary" %>

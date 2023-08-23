@@ -10,4 +10,6 @@
   <%= link_to 'ユーザー編集', edit_user_path(@user.id), class: "btn btn-outline-success" %>
 <% end %>
 
+<%= link_to 'お気に入り一覧', favorite_path(@user.id), class: "btn btn-outline-danger" %>
+
 <%= link_to 'Index', pictures_path, class: "btn btn-outline-primary" %>

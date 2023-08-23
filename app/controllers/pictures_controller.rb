@@ -1,11 +1,13 @@
 class PicturesController < ApplicationController
   def index
+
     @pictures = Picture.all
     @favorites = Favorite.all
     @favorite_pictures = current_user.favorites
   end
 
   def show
+    @user = User.find(params[:id])
     @picture = Picture.find(params[:id])
     @favorite = current_user.favorites.find_by(picture_id: @picture.id)
   end

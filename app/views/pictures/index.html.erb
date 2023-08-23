@@ -25,7 +25,9 @@
           <% end %>
         <% end %>
         <td><%= link_to '詳細', picture, class: "btn btn-outline-primary" %></td>
-        <td><%= link_to '編集', edit_picture_path(picture), class: "btn btn-outline-success" %></td>
+        <% if picture.user_id == current_user.id %>
+          <td><%= link_to '編集', edit_picture_path(picture), class: "btn btn-outline-success" %></td>
+        <% end %>
         <td><%= link_to '削除', picture, method: :delete, data: { confirm: '本当に削除しますか？' }, class: "btn btn-outline-secondary" %></td>
       </tr>
     <% end %>
