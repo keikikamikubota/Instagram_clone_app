@@ -1,6 +1,8 @@
 class PicturesController < ApplicationController
   def index
     @pictures = Picture.all
+    @favorites = Favorite.all
+    @favorite_pictures = current_user.favorites
   end
 
   def show

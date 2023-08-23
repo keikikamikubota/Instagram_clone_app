@@ -18,9 +18,17 @@
         <td><%= image_tag picture.image.url, class:'icon' %></td>
         <td><%= picture.content %></td>
         <td><%= link_to picture.user.name, favorite_path(picture.user) %></td>
-        <td><%= link_to '詳細', picture %></td>
-        <td><%= link_to '編集', edit_picture_path(picture) %></td>
-        <td><%= link_to '削除', picture, method: :delete, data: { confirm: '本当に削除しますか？' } %></td>
+        <% unless picture.user_id == current_user.id %>
+
+          <% if  (@favorites.pluck(:id) & (picture.favorites.pluck(:id))).any? %>
+            <td><%= link_to 'お気に入り解除する', favorite_path(id: picture.favorite_users.pluck(:id)), method: :delete, class: "btn btn-danger" %></td>
+          <% else %>
+            <td><%= link_to 'お気に入りする', favorites_path(picture_id: picture.id), method: :post, class: "btn btn-outline-danger" %></td>
+          <% end %>
+        <% end %>
+        <td><%= link_to '詳細', picture, class: "btn btn-outline-primary" %></td>
+        <td><%= link_to '編集', edit_picture_path(picture), class: "btn btn-outline-success" %></td>
+        <td><%= link_to '削除', picture, method: :delete, data: { confirm: '本当に削除しますか？' }, class: "btn btn-outline-secondary" %></td>
       </tr>
     <% end %>
   </tbody>
